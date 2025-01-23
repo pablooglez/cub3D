@@ -1,3 +1,6 @@
+## Project Structure
+
+```bash
 cub3D/
 ├── Makefile
 ├── includes/
@@ -13,3 +16,4 @@ cub3D/
 │   └── (tu librería libft)
 └── maps/
     └── example.cub
+```
