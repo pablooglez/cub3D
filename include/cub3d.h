@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/16 20:57:20 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:23:10 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <sys/time.h>						// gettimeofday
 # include <math.h>							// sin, cos, tan, sqrt, pow ...
 # include "../Libft/libft.h"				// Libft
+# include "../Libft/get_next_line_bonus.h"	//Get_next_line
 # include "../MLX42/include/MLX42/MLX42.h"	// MLX42
-# include "../Gnl/get_next_line_bonus.h"	//Get_next_line
 
 // Constantes del programa
 # define WIN_WIDTH 1920						// Ancho de la ventana
@@ -80,31 +80,29 @@ typedef struct game
 	mlx_image_t		*img_window;			// Imagen de la ventana
 	int				fd;						// Descriptor de archivo del .cub
 	char			**map;					// Matriz del mapa
-	int				len_map;				// Longitud total del mapa
-	int				start_map;				// Línea donde comienza el mapa en el archivo .cub
-	int				n_player;				// Número de jugadores (1 para mapa válido)
 	t_coor			*coor;					// Configuración del mapa (texturas, colores, ... etc)
-	t_player		*player;					// Información del jugador
-	int				n_player				// Número de posiciones de inicio del jugador
+	t_player		*player;				// Información del jugador
+	int				n_player;				// Número de posiciones de inicio del jugador
 }	t_cub;
 
 
 //----------------CHECKS--------------------//
-int				ft_check_map_size(t_cub *game, char *file);
+int				ft_check_map_closed(t_cub *game);
+int				ft_check_valid_characters(t_cub *game);
 int				ft_check_file(char *str);
-int				ft_check_identifiers(t_cub *game, char **lines);
-t_color			ft_parse_color(char *line);
-int				ft_check_walls(t_cub *game);
-void			ft_load_map(t_cub *game, char *file);
-void			ft_get_player_position(t_cub *game);
 
 //----------------ERROR---------------------//
 void			ft_error(char *msg);
 
 //----------------FLOOD-FILL----------------//
-void			ft_get_player_position(t_cub *game);
+
+
+//----------------LOAD_GAME----------------//
+void			ft_load_game(t_cub *game, char *filename);
 
 //----------------UTILS---------------------//
+void			print_map(t_cub *game);
+void			remove_newline(char *str);
 int				ft_strlen_cub3d(char *str);
 void			ft_init_game(t_cub *game);
 #endif

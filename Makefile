@@ -6,7 +6,7 @@
 #    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/01/13 21:14:01 by pablogon         ###   ########.fr        #
+#    Updated: 2025/01/23 19:27:44 by pablogon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,12 @@ HEADERS := -I include -I$(LIBFT_DIR) -I$(MLX)
 ##                              SOURCE AND OBJECTS                            ##
 ################################################################################
 
-SRCS	:=
+SRCS	:=	src/main.c \
+			src/checks.c \
+			src/error.c \
+			src/flood_fill.c \
+			src/load_game.c \
+			src/utils.c \
 
 OBJS	:= ${SRCS:.c=.o}
 
