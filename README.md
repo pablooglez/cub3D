@@ -14,6 +14,8 @@ cub3D/
 │   └── utils.c
 ├── libft/
 │   └── (tu librería libft)
+├── mlx42/
+│   └── (MLX42 aquí)
 └── maps/
     └── example.cub
 ```
