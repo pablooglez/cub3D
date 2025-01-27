@@ -5,9 +5,14 @@ cub3D/
 ├── includes/
 │   └── cub3d.h
 ├── Libft/
-│   └── (tu librería libft)
+│   └── (Mi librería libft)
 ├── maps/
-    └── example.cub
+    └── map0.cub
+    └── map1.cub
+    └── map2.cub
+    └── map3.cub
+    └── map4.cub
+    └── map5.cub
 ├── MLX42/
 │   └── (MLX42 aquí)
 ├── src/
@@ -18,9 +23,9 @@ cub3D/
 │   ├── main.c
 │   └── utils.c
 ├── textures/
-│   └──north_texture.xpm
-    └──south_texture.xpm
-    └──west_texture.xpm
-    └──east_texture.xpm
+│   └──wall_1.png
+    └──wall_2.png
+    └──wall_3.png
+    └──wall_4.png
 ├── Makefile
 ```
