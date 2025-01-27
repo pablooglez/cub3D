@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:56:42 by pablogon          #+#    #+#             */
-/*   Updated: 2024/11/28 17:51:50 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:56:06 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* Extras */
 int		ft_strcmp(const char *s1, const char *s2);
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 /* bonus */
 t_list	*ft_lstnew(void *content);

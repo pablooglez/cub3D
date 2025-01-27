@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:17:11 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/23 19:32:32 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:34:50 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int main(int argc, char **argv)
 		printf("File check passed.\n");
 
 		printf("Loading game...\n");
-		ft_load_game(&game, argv[1]);  // Carga el mapa y las configuraciones
 		printf("Game loaded successfully.\n");
 
 		printf("Checking valid characters...\n");
