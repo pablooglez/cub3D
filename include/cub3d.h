@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/27 17:05:48 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/28 20:06:04 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@
 # define WIN_WIDTH 1920						// Ancho de la ventana
 # define WIN_HEIGHT 1080					// Altura de la ventana
 # define FOV 60								// Campo de vision del jugador
-# define P_SPEED 2							// Velocidad de movimiento del jugador
-# define R_SPEED 0.045						// Velocidad de rotación del jugador
+# define WALL_SIZE 640 
 
 // Identificadores para la configuración del archivo .pub
 # define ID_NO "NO"							// ID para la textura norte
@@ -80,6 +79,7 @@ typedef struct game
 	mlx_image_t		*img_window;			// Imagen de la ventana
 	int				fd;						// Descriptor de archivo del .cub
 	char			**map;					// Matriz del mapa
+	char			**map_copy;				// Copia del mapa para el flood_fill
 	t_coor			*coor;					// Configuración del mapa (texturas, colores, ... etc)
 	t_player		*player;				// Información del jugador
 	int				n_player;				// Número de posiciones de inicio del jugador
@@ -87,6 +87,8 @@ typedef struct game
 
 
 //----------------CHECKS--------------------//
+int				ft_check_access(t_cub *game);
+void			ft_get_player_position(t_cub *game);
 int				ft_check_map_closed(t_cub *game);
 int				ft_check_valid_characters(t_cub *game);
 int				ft_check_file(char *str);
@@ -95,14 +97,22 @@ int				ft_check_file(char *str);
 void			ft_error(char *msg);
 
 //----------------FLOOD-FILL----------------//
+void			ft_free_duplicate_map(t_cub *game);
+void			ft_duplicate_map(t_cub *game);
+void			flood_fill(t_cub *game, int x, int y);
 
+//----------------MAP-----------------------//
+t_color			ft_parse_color(char *line);
+void			ft_parse_texture_or_color(t_cub *game, char *line);
+void			ft_check_map_size(t_cub *game, char *filename);
+void			ft_create_map(t_cub *game, char *filename);
 
-//----------------LOAD_GAME----------------//
-void			ft_load_game(t_cub *game, char *filename);
-
-//----------------UTILS---------------------//
+	//----------------UTILS---------------------//
+void			ft_expand_game(t_cub *game);
 void			print_map(t_cub *game);
 void			remove_newline(char *str);
 int				ft_strlen_cub3d(char *str);
 void			ft_init_game(t_cub *game);
+
+//------------------UTILS2---------------------//
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_game.c                                        :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/27 18:58:19 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/28 20:05:11 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_color	ft_parse_color(char *line)																					// Parsear un color desde
 	color.b = ft_atoi(rgb[2]);																						// Azul
 
 																													// Liberar la memoria de ft_split
+	if (color.r < 0 || color.r > 255 || color.g < 0 || color.g > 255 || color.b < 0 || color.b > 255)
+		ft_error("Invalid RGB value (must be 0-255)");
 	free(rgb[0]);
 	free(rgb[1]);
 	free(rgb[2]);
@@ -58,7 +60,7 @@ int	ft_is_texture_or_color(char *line)																				// Determina si una l�
 		return (1);																									// Es una textura o color
 	return (0);																										// No es una textura o color
 }
-void	ft_load_game(t_cub *game, char *filename)																	// Cargar los datos del juego desde un archivo .cub.
+void	ft_check_map_size(t_cub *game, char *filename)																	// Cargar los datos del juego desde un archivo .cub.
 {
 	int		fd;																										// Descriptor de archivo.
 	char	*line;																									// Línea actual leída del archivo
@@ -68,11 +70,6 @@ void	ft_load_game(t_cub *game, char *filename)																	// Cargar los dat
 	fd = open(filename, O_RDONLY);																					// Abrimos el archivo en modo solo lectura.
 	if (fd < 0)																										// Verificamos si el archivo se abrió correctamente
 		ft_error("Error: Couldn't open the map file");
-
-																													// Inicializar el mapa
-	game->map = (char **)malloc(sizeof(char *) * 100);																// Tamaño inicial (ajustar según necesidad)
-	if (!game->map)																									// Verificamos si la asignación fue exitosa.
-		ft_error("Error: Couldn't allocate memory for the map");
 	line = get_next_line(fd);																						// Leemos el archivo línea por línea.
 	while (line)
 	{
@@ -80,7 +77,7 @@ void	ft_load_game(t_cub *game, char *filename)																	// Cargar los dat
 			ft_error("Error: Empty line in map");
 		if (line[ft_strlen(line) - 1] == '\n')																		// Eliminar el salto de línea al final de la línea (si existe)
 			line[ft_strlen(line) - 1] = '\0';
-		if (line[0] != '\0' && line[0] != '#')																		// Si la línea no está vacía y no es un comentario (empieza con '#')
+		if (line[0] != '\0')																						// Si la línea no está vacía
 		{
 			if (ft_is_texture_or_color(line))																		// Si la línea contiene un identificador de textura o color
 				ft_parse_texture_or_color(game, line);																// Parseamos la textura o el color.
@@ -90,9 +87,6 @@ void	ft_load_game(t_cub *game, char *filename)																	// Cargar los dat
 				{
 					map_started = 1;																				// Empezamos a leer el mapa
 				}
-				game->map[i] = ft_strdup(line);																		// Guardar la línea en el mapa
-				if (!game->map[i])																					// Verificamos si la asignación fue exitosa.
-					ft_error("Error: Couldn't allocate memory for a map line");
 				i++;																								// Incrementamos el índice del mapa.
 				game->coor->map_rows++;																				// Incrementamos el contador de filas del mapa.
 			}
@@ -100,10 +94,18 @@ void	ft_load_game(t_cub *game, char *filename)																	// Cargar los dat
 		free(line);																									// Liberar la línea leída
 		line = get_next_line(fd);																					// Leemos la siguiente línea
 	}
-	game->map = (char **)ft_realloc(game->map, sizeof(char *) * 100, sizeof(char *) * (game->coor->map_rows + 1));	// Redimensionamos la memoria del mapa para ajustarla al número de filas leídas.
+	game->map = (char **)malloc(sizeof(char *) * (game->coor->map_rows + 1));										// Redimensionamos la memoria del mapa para ajustarla al número de filas leídas.
 	if (!game->map)																									// Verificamos si la redimensión fue exitosa.
 		ft_error("Error: Couldn't reallocate memory for the map");
 	game->map[game->coor->map_rows] = NULL;																			// Terminar el mapa con NULL
-
+	if (!game->coor->north || !game->coor->south || !game->coor->west || !game->coor->east)
+	ft_error("Error: Missing textures");
+	if (game->coor->floor_color.r == -1 || game->coor->ceiling_color.r == -1)
+	ft_error("Error: Missing colors");
 	close(fd);																										// Cerrar el archivo
+}
+
+void	ft_create_map(t_cub *game, char *filename)
+{
+	
 }

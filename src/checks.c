@@ -6,12 +6,56 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:42:15 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/27 18:42:08 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:43:57 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+int	ft_check_access(t_cub *game)
+{
+	int i;
+	int	j;
+
+	i = 0;
+	while (game->map_copy[i])
+	{
+		j = 0;
+		while (game->map_copy[i][j]) {
+			if (game->map_copy[i][j] != '1' && game->map_copy[i][j] != 'X')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+void	ft_get_player_position(t_cub *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	game->n_player = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			char c = 	game->map[i][j];
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			{
+				game->player->x = j;
+				game->player->y = i;
+				game->n_player++;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (game->n_player != 1)
+		ft_error("Error:There must be exactly one player");
+}
 int	ft_check_map_closed(t_cub *game)																			// Comprueba si el mapa esta cerrado por paredes
 {
 	int	i;																										// Índice para recorrer filas del mapa.
@@ -25,7 +69,7 @@ int	ft_check_map_closed(t_cub *game)																			// Comprueba si el mapa e
 																												// Verificamos la primera fila del mapa.
 	while (game->map[0][j])																						// Recorremos la primera fila.
 	{
-		if (game->map[0][j] != '1' && game->map[0][j] != ' ')													// Si algún carácter no es '1' o espacio.
+		if (game->map[0][j] != '1')																				// Si algún carácter no es '1'
 			return (0);																							// Retornamos 0 indicando que no está cerrado.
 		j++;																									// Avanzamos al siguiente carácter.
 	}
@@ -33,7 +77,7 @@ int	ft_check_map_closed(t_cub *game)																			// Comprueba si el mapa e
 																												// Verificamos la última fila del mapa.
 	while (game->map[game->coor->map_rows - 1][j])																// Recorremos la última fila.
 	{
-		if (game->map[game->coor->map_rows - 1][j] != '1' && game->map[game->coor->map_rows - 1][j] != ' ')
+		if (game->map[game->coor->map_rows - 1][j] != '1')
 			return (0);																							// Retornamos 0 si algún carácter no es válido.
 		j++;																									// Avanzamos al siguiente carácter.
 	}
@@ -42,9 +86,9 @@ int	ft_check_map_closed(t_cub *game)																			// Comprueba si el mapa e
 	{
 		if (!game->map[i])																						// Verificamos si la fila es nula.
 			return (0);																							// Retornamos 0 si no hay fila.
-		if (game->map[i][0] != '1' && game->map[i][0] != ' ')													// Comprobamos el primer carácter de la fila.
+		if (game->map[i][0] != '1')																				// Comprobamos el primer carácter de la fila.
 			return (0);																							// Retornamos 0 si no es válido.
-		if (game->map[i][len - 1] != '1' && game->map[i][len - 1] != ' ')										// Comprobamos el último carácter de la fila.
+		if (game->map[i][len - 1] != '1')																		// Comprobamos el último carácter de la fila.
 			return (0);																							// Retornamos 0 si no es válido.
 		i++;																									// Avanzamos a la siguiente fila.
 	}

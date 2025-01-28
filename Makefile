@@ -6,7 +6,7 @@
 #    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/01/27 17:51:27 by pablogon         ###   ########.fr        #
+#    Updated: 2025/01/28 20:02:09 by pablogon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS	:=	src/main.c \
 			src/flood_fill.c \
 			src/load_game.c \
 			src/utils.c \
+			src/utils2.c \
 
 OBJS	:= ${SRCS:.c=.o}
 

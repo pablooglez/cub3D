@@ -6,11 +6,30 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:53:44 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/27 19:07:42 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:08:43 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_expand_game(t_cub *game)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while(game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == ' ')
+				game->map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
 
 void remove_newline(char *str)										// Elimina el salto de línea ('\n') al final de una cadena
 {
@@ -56,8 +75,6 @@ void ft_init_game(t_cub *game)										// Inicializa las estructuras principale
 	game->player->x = -1;											// Posición X del jugador (inicialmente no definida)
 	game->player->y = -1;											// Posición Y del jugador (inicialmente no definida)
 	game->player->angle = 0;										// Ángulo inicial del jugador
-	game->player->move_speed = P_SPEED;								// Velocidad de movimiento
-	game->player->rot_speed = R_SPEED;								// Velocidad de rotación
 																	// Inicializamos el contador de jugadores en el mapa
 	game->n_player = 0;												// Indica que aún no se ha encontrado ningún jugador
 }
