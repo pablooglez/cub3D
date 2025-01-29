@@ -6,75 +6,42 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:53:44 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/28 15:08:43 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:49:08 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_expand_game(t_cub *game)
+int	ft_find_char_index(char *s, int c)
 {
-	int	i;
-	int	j;
-	
+	int		i;
+
 	i = 0;
-	while(game->map[i])
+	if (!s)
+		return (0);
+	while (s[i])
 	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == ' ')
-				game->map[i][j] = '1';
-			j++;
-		}
+		if (s[i] == c)
+			return (i);
 		i++;
 	}
+	if (c == '\0' && s[i] == '\0')
+		return (i);
+	return (0);
 }
 
-void remove_newline(char *str)										// Elimina el salto de línea ('\n') al final de una cadena
-{
-	int	len;
-
-	len = ft_strlen_cub3d(str);										// Obtenemos la longitud de la cadena hasta el salto de línea
-	if (len > 0 && str[len - 1] == '\n')							// Si la cadena termina en '\n'
-		str[len - 1] = '\0';										// Lo reemplazamos por el carácter nulo
-}
-
-int	ft_strlen_cub3d(char *str)										// Calcula la longitud de una cadena hasta el salto de línea o el final de la cadena
+int	ft_is_whitespace_only(char *line)
 {
 	int	i;
 
-	i = 0;
-	if (!str)														// Si la cadena es NULL, retornamos 0
+	if (!line)
 		return (0);
-	while (str[i] && str[i] != '\n')								// Recorremos la cadena hasta encontrar '\n' o el final
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && (line[i] < 9 || line[i] > 13))
+			return (0);
 		i++;
-	return (i);														// Retornamos la longitud calculada
-}
-
-void ft_init_game(t_cub *game)										// Inicializa las estructuras principales del juego
-{
-	game->init = NULL;												// Puntero para la librería gráfica (por ejemplo, MLX)
-	game->img_window = NULL;										// Puntero para la ventana del juego
-	game->fd = -1;													// Descriptor de archivo inicializado a un valor inválido
-	game->map = NULL;												// Inicializamos el mapa a NULL
-	game->coor = malloc(sizeof(t_coor));							// Reservamos memoria para la estructura `t_coor`
-	if (!game->coor)												// Verificamos si la asignación fue exitosa
-		ft_error("Error: Failed to allocate memory for coor");
-	game->coor->north = NULL;										// Ruta de textura norte
-	game->coor->south = NULL;										// Ruta de textura sur
-	game->coor->west = NULL;										// Ruta de textura oeste
-	game->coor->east = NULL;										// Ruta de textura este
-	game->coor->floor_color = (t_color){-1, -1, -1};				// Color del suelo
-	game->coor->ceiling_color = (t_color){-1, -1, -1};				// Color del techo
-	game->coor->map_rows = 0;										// Número de filas en el mapa
-	game->coor->map_cols = 0;										// Número de columnas en el mapa
-	game->player = malloc(sizeof(t_player));						// Reservamos memoria para la estructura `t_player`
-	if (!game->player)												// Verificamos si la asignación fue exitosa
-		ft_error("Error: Failed to allocate memory for player");
-	game->player->x = -1;											// Posición X del jugador (inicialmente no definida)
-	game->player->y = -1;											// Posición Y del jugador (inicialmente no definida)
-	game->player->angle = 0;										// Ángulo inicial del jugador
-																	// Inicializamos el contador de jugadores en el mapa
-	game->n_player = 0;												// Indica que aún no se ha encontrado ningún jugador
+	}
+	return (1);
 }

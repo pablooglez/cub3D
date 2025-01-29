@@ -6,14 +6,13 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/28 20:06:04 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:02:18 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// Librerías necesarias para usar las funciones permitidas en el proyecto
 # include <unistd.h>						// read, write y close
 # include <stdio.h>							// printf
 # include <stdlib.h>						// malloc, free
@@ -26,93 +25,71 @@
 # include "../Libft/get_next_line_bonus.h"	//Get_next_line
 # include "../MLX42/include/MLX42/MLX42.h"	// MLX42
 
-// Constantes del programa
-# define WIN_WIDTH 1920						// Ancho de la ventana
-# define WIN_HEIGHT 1080					// Altura de la ventana
-# define FOV 60								// Campo de vision del jugador
+
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+# define FOV 60
 # define WALL_SIZE 640 
 
-// Identificadores para la configuración del archivo .pub
-# define ID_NO "NO"							// ID para la textura norte
-# define ID_SO "SO"							// ID para la textura sur
-# define ID_WE "WE"							// ID para la textura oeste
-# define ID_EA "EA"							// ID para la textura este
-# define ID_F "F"							// ID para color del suelo
-# define ID_C "C"							// ID para el color del cielo
-
-
-// Estructura para almacenar colores RGB
-typedef struct s_color						// Estructura para almacenar colores RGB
+typedef struct s_color
 {
-	int	r;									// Valor del canal rojo
-	int	g;									// Valor del canal verde
-	int	b;									// Valor del canal azul
+	int	r;
+	int	g;
+	int	b;
 }	t_color;
 
-// Estructura para representar al jugador (Usamos float para mejorar precisión de calculos y no sobrecargar la memoria)
 typedef struct s_player
 {
-	float	x;								// Posicion en el eje X
-	float	y;								// Posicion en el eje Y
-	float	angle;							// Ángulo de visión del jugador 
-	float	move_speed;						// Velocidad de movimiento del jugador
-	float	rot_speed;						// Velocidad de rotación del jugador
+	float	x;
+	float	y;
 }	t_player;
 
-// Estructura para almacenar la configuración del mapa
-typedef struct s_coor						// Estructura para almacenar las coordenadas del mapa
+typedef struct s_coor
 {
-	char	*north;							// Ruta del norte
-	char	*south;							// Ruta del sur
-	char	*west;							// Ruta del oeste
-	char	*east;							// Ruta del este
-	t_color	floor_color;					// Color del suelo
-	t_color	ceiling_color;					// Color del cielo
-	int		map_rows;						// Número de filas del mapa
-	int		map_cols;						// Número de columnas en el mapa
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	char			*floor;
+	char			*ceiling;
+	int				n_coor;
+	t_color			*t_floor;
+	t_color			*t_ceiling;
+	mlx_texture_t	*north_i;
+	mlx_texture_t	*south_i;
+	mlx_texture_t	*west_i;
+	mlx_texture_t	*east_i;
 }	t_coor;
 
-// Estructura principal del juego
-typedef struct game
+typedef struct s_cub
 {
-	mlx_t			*init;					// Conexión con la MLX42
-	mlx_image_t		*img_window;			// Imagen de la ventana
-	int				fd;						// Descriptor de archivo del .cub
-	char			**map;					// Matriz del mapa
-	char			**map_copy;				// Copia del mapa para el flood_fill
-	t_coor			*coor;					// Configuración del mapa (texturas, colores, ... etc)
-	t_player		*player;				// Información del jugador
-	int				n_player;				// Número de posiciones de inicio del jugador
+	mlx_t			*mlx_init;
+	mlx_image_t		*img_window;
+	int				fd;
+	char			**map;
+	int				map_len;
+	int				error_flag;
+	int				start_map;
+	int				n_player;
+	t_player		*player;
+	t_coor			*coor;
 }	t_cub;
 
 
 //----------------CHECKS--------------------//
-int				ft_check_access(t_cub *game);
-void			ft_get_player_position(t_cub *game);
-int				ft_check_map_closed(t_cub *game);
-int				ft_check_valid_characters(t_cub *game);
-int				ft_check_file(char *str);
+void	ft_check_file(t_cub *game, char *str);
 
 //----------------ERROR---------------------//
-void			ft_error(char *msg);
-
-//----------------FLOOD-FILL----------------//
-void			ft_free_duplicate_map(t_cub *game);
-void			ft_duplicate_map(t_cub *game);
-void			flood_fill(t_cub *game, int x, int y);
+void	ft_error(char *msg);
 
 //----------------MAP-----------------------//
-t_color			ft_parse_color(char *line);
-void			ft_parse_texture_or_color(t_cub *game, char *line);
-void			ft_check_map_size(t_cub *game, char *filename);
-void			ft_create_map(t_cub *game, char *filename);
+void	ft_get_map(t_cub *game, char *aux, char *result);
 
-	//----------------UTILS---------------------//
-void			ft_expand_game(t_cub *game);
-void			print_map(t_cub *game);
-void			remove_newline(char *str);
-int				ft_strlen_cub3d(char *str);
-void			ft_init_game(t_cub *game);
+//----------------UTILS---------------------//
+int		ft_find_char_index(char *s, int c);
+int		ft_is_whitespace_only(char *line);
 
 //------------------UTILS2---------------------//
+t_coor			*malloc_coor(t_cub *game);
+void			ft_init_game(t_cub *game);
 #endif
