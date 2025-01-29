@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/29 18:02:18 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/29 20:02:22 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
+	float	view;
 }	t_player;
 
 typedef struct s_coor
@@ -77,6 +78,7 @@ typedef struct s_cub
 
 
 //----------------CHECKS--------------------//
+void	ft_check_map(t_cub *game, int y, int x);
 void	ft_check_file(t_cub *game, char *str);
 
 //----------------ERROR---------------------//
@@ -86,6 +88,7 @@ void	ft_error(char *msg);
 void	ft_get_map(t_cub *game, char *aux, char *result);
 
 //----------------UTILS---------------------//
+void	change_spaces(t_cub *game);
 int		ft_find_char_index(char *s, int c);
 int		ft_is_whitespace_only(char *line);
 

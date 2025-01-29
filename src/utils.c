@@ -6,11 +6,26 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:53:44 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/29 17:49:08 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:48:07 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	change_spaces(t_cub *game)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (game->map[++y])
+	{
+		x = -1;
+		while (game->map[y][++x])
+			if (game->map[y][x] == ' ')
+				game->map[y][x] = '1';
+	}
+}
 
 int	ft_find_char_index(char *s, int c)
 {
