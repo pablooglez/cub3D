@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 21:04:58 by pablogon          #+#    #+#             */
-/*   Updated: 2024/11/26 21:54:29 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:31:34 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_strjoin(const char *str1, const char *str2)
 	char	*ret;
 	int		len;
 
-	if (!str1 || !str2)
-		return (0);
+	if (!str1)
+		return ((char *)str2);
 	len = ft_strlen(str1) + ft_strlen(str2);
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)

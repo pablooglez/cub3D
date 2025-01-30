@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 18:07:21 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:35:39 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	ft_check_map(t_cub *game, int y, int x);
 
 //----------------CREATE_GAME--------------------//
 void	ft_mlx_init(t_cub *game);
-void	load_textures(t_cub *game);
 
 //----------------ERROR---------------------//
 void	ft_print_error(const char *msg);

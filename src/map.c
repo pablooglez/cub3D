@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 19:03:24 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:37:55 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
 {
+	printf("%d\n",game->coor->n_coor);
 	if (!dst && !ft_strncmp(line, coor, ft_find_char_index(line, ' ')))
 	{
 		game->coor->n_coor++;
@@ -52,9 +53,9 @@ static int	check_newline(char *line)
 	if (!line)
 		return (1);
 	i = 0;
-	while (line)
+	while (line[i])
 	{
-		if (line[i] == '\n' && line[i + 1] == '\n')
+		if (line[i] == '\n')
 			return (0);
 		i++;
 	}
@@ -66,7 +67,6 @@ void	ft_get_map(t_cub *game, char *aux, char *result)
 	char	*line;
 	int		flag;
 
-	result = NULL;
 	flag = 0;
 	line = get_next_line(game->fd);
 	while (line)
@@ -75,10 +75,13 @@ void	ft_get_map(t_cub *game, char *aux, char *result)
 			ft_save_coor(game, line, &flag);
 		else if (game->start_map)
 		{
-			aux = result;
+			aux = ft_strdup(result);
 			result = ft_strjoin(aux, line);
 			if (!check_newline(result))
+			{
+				printf("%s\n", result);
 				flag = 1;
+			}
 		}
 		free(line);
 		line = get_next_line(game->fd);
