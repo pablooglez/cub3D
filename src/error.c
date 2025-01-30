@@ -6,15 +6,29 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:19:25 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/29 15:45:27 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:42:24 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_error(char *msg)
+void	ft_print_error(const char *msg)
 {
-	write (2, msg, ft_strlen(msg));
-	write (2, "\n", 1);
-	exit (EXIT_FAILURE);
+	ft_putstr_fd("Error: ", 2);
+	ft_putendl_fd(msg, 2);
 }
+
+void	ft_error(t_cub *game, int use, const char *msg)
+{
+	ft_print_error(msg);
+
+	if (!use)
+	{
+		ft_print_error("Usage: ./cub3d Maps/map.cub");
+		return;
+	}
+
+	free_game(game);
+	exit(EXIT_FAILURE);
+}
+

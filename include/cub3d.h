@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/29 20:02:22 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:58:00 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,21 @@ typedef struct s_cub
 
 
 //----------------CHECKS--------------------//
-void	ft_check_map(t_cub *game, int y, int x);
 void	ft_check_file(t_cub *game, char *str);
 
 //----------------ERROR---------------------//
-void	ft_error(char *msg);
+void	ft_print_error(const char *msg);
+void	ft_error(t_cub *game, int use, const char *msg);
+
+//----------------FREE----------------------//
+void	free_textures(t_coor *coor);
+void	free_coor(t_coor *coor);
+void	free_array(char **array);
+void	free_game(t_cub *game);
 
 //----------------MAP-----------------------//
 void	ft_get_map(t_cub *game, char *aux, char *result);
+void	ft_check_map(t_cub *game, int y, int x);
 
 //----------------UTILS---------------------//
 void	change_spaces(t_cub *game);

@@ -6,7 +6,7 @@
 #    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/01/29 17:52:08 by pablogon         ###   ########.fr        #
+#    Updated: 2025/01/30 14:46:32 by pablogon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ HEADERS := -I include -I$(LIBFT_DIR) -I$(MLX)
 
 SRCS	:=	src/checks.c \
 			src/error.c \
+			src/free.c \
 			src/main.c\
 			src/map.c \
 			src/utils.c \

@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/29 17:53:35 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:02:31 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void	ft_get_map(t_cub *game, char *aux, char *result)
 	if (result)
 		free(result);
 	if (flag)
-		ft_error("ERROR: Unrecognized line");
+		ft_error(game, 1, "Unrecognized line");
 }

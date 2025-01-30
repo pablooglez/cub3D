@@ -6,19 +6,19 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:01:31 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/29 18:01:19 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:45:51 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-t_coor	*malloc_coor()
+t_coor	*malloc_coor(t_cub *game)
 {
 	t_coor	*coor;
 
 	coor = malloc(sizeof(t_coor));
 	if (!coor)
-		ft_error("ERROR: Malloc failed");
+		ft_error(game, 1, "Malloc failed");
 	coor->n_coor = 0;
 	coor->north = NULL;
 	coor->south = NULL;
@@ -40,7 +40,7 @@ void ft_init_game(t_cub *game)
 	game->mlx_init = NULL;
 	game->player = malloc(sizeof(t_player));
 	if (!game->player)
-		ft_error("ERROR: Malloc failed");
+		ft_error(game, 1, "Malloc failed");
 	game->coor = malloc_coor(game);
 	game->map = NULL;
 	game->map_len = 0;
