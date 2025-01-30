@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:01:31 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 14:45:51 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:47:53 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ t_coor	*malloc_coor(t_cub *game)
 	coor->west = NULL;
 	coor->floor = NULL;
 	coor->ceiling = NULL;
-	coor->north_i = NULL;
-	coor->south_i = NULL;
-	coor->east_i = NULL;
-	coor->west_i = NULL;
+	coor->txt_north_i = NULL;
+	coor->txt_south_i = NULL;
+	coor->txt_east_i = NULL;
+	coor->txt_west_i = NULL;
 	coor->t_ceiling = NULL;
 	coor->t_floor = NULL;
 	return (coor);
@@ -37,7 +37,7 @@ t_coor	*malloc_coor(t_cub *game)
 
 void ft_init_game(t_cub *game)
 {
-	game->mlx_init = NULL;
+	game->init = NULL;
 	game->player = malloc(sizeof(t_player));
 	if (!game->player)
 		ft_error(game, 1, "Malloc failed");

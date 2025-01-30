@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:53:24 by pablogon          #+#    #+#             */
-/*   Updated: 2024/08/24 18:23:11 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:32:46 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 char	*ft_strrchr(const char *str, int c)
 {
-	char const	*aux;
+	char		*last;
+	int			i;
 
-	aux = 0;
-	while (*str)
+	last = NULL;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		if (*str == (char)c)
-			aux = str;
-		str++;
+		if (str[i] == (char)c)
+			last = (char *)&str[i];
+		i++;
 	}
-	if (*str == (char)c)
-		return ((char *)str);
-	else
-		return ((char *)aux);
+	if ((char)c == '\0')
+		return ((char *)&str[i]);
+	return (last);
 }

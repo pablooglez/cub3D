@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:19:25 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 14:42:24 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:34:59 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_error(t_cub *game, int use, const char *msg)
 		ft_print_error("Usage: ./cub3d Maps/map.cub");
 		return;
 	}
-
 	free_game(game);
 	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:42:15 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 15:02:19 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:01:51 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	ft_check_map(t_cub *game, int y, int x)
 {
 	if (game->coor->n_coor != 6)
 		ft_error (game, 1, "There is not a texture");
+	printf("pepe\n");
 	if (!game->map)
 		return (ft_error(game, 1, "There is not a map"));
 	fill_map_with_spaces(game);
@@ -123,10 +124,9 @@ void	ft_check_file(t_cub *game, char *argv)
 	archive = ft_strrchr(argv, '.');
 	backslash = ft_strrchr(argv, '/');
 
-	if (backslash && (!ft_strcmp (&backslash[1], ".cub")
-	|| backslash[1] == '.'))
+	if (backslash && (!ft_strcmp (&backslash[1], ".cub") || backslash[1] == '.'))
 		ft_error(game, 1, "Can't have hidden files");
-	if (ft_strcmp(archive, ".cub"))
+	if (!archive || ft_strcmp(archive, ".cub"))
 		return (ft_error(game, 1, "Incorrect Extension"));
 	if (ft_strlen(archive) == ft_strlen(argv))
 		ft_error(game, 1, "Can't have hidden files");

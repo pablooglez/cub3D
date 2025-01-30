@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:17:11 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 14:55:53 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:35:52 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	ft_get_map(game, NULL, NULL);
 	printf("Load map sucessfully\n");
 	ft_check_map(game, -1, -1);
-	//ft_init_mlx(game);
-	//ft_cleanup(game);
+	printf("Check map completed\n");
+	ft_mlx_init(game);
 	return (0);
 }

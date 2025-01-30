@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 14:58:00 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:56:32 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ typedef struct s_coor
 	int				n_coor;
 	t_color			*t_floor;
 	t_color			*t_ceiling;
-	mlx_texture_t	*north_i;
-	mlx_texture_t	*south_i;
-	mlx_texture_t	*west_i;
-	mlx_texture_t	*east_i;
+	mlx_texture_t	*txt_north_i;
+	mlx_texture_t	*txt_south_i;
+	mlx_texture_t	*txt_west_i;
+	mlx_texture_t	*txt_east_i;
 }	t_coor;
 
 typedef struct s_cub
 {
-	mlx_t			*mlx_init;
+	mlx_t			*init;
 	mlx_image_t		*img_window;
 	int				fd;
 	char			**map;
@@ -79,6 +79,10 @@ typedef struct s_cub
 
 //----------------CHECKS--------------------//
 void	ft_check_file(t_cub *game, char *str);
+
+//----------------CREATE_GAME--------------------//
+void	ft_mlx_init(t_cub *game);
+void	load_textures(t_cub *game);
 
 //----------------ERROR---------------------//
 void	ft_print_error(const char *msg);
