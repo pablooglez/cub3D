@@ -6,7 +6,7 @@
 #    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/01/30 17:02:22 by pablogon         ###   ########.fr        #
+#    Updated: 2025/01/30 18:16:47 by pablogon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME:= cub3D
 
 CFLAGS:= -g -Wall -Werror -Wextra \
-		-g -fsanitize=address,undefined \
+		#-g -fsanitize=address,undefined \
 		#-Wunreachable-code -Ofast \
 
 CUB3D = include/
@@ -35,14 +35,16 @@ HEADERS := -I include -I$(LIBFT_DIR) -I$(MLX)
 ##                              SOURCE AND OBJECTS                            ##
 ################################################################################
 
-SRCS	:=	src/checks.c \
+SRCS	:=	src/check_file.c \
+			src/check_map.c \
 			src/create_game.c \
 			src/error.c \
 			src/free.c \
+			src/init_and_memory.c \
 			src/main.c\
 			src/map.c \
 			src/utils.c \
-			src/utils2.c \
+
 
 OBJS	:= ${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 15:02:31 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:03:24 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_get_map(t_cub *game, char *aux, char *result)
 	char	*line;
 	int		flag;
 
+	result = NULL;
 	flag = 0;
 	line = get_next_line(game->fd);
 	while (line)
