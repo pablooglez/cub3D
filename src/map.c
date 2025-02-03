@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 21:37:55 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:39:52 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static void	ft_save_coor(t_cub *game, char *line, int *flag)
 		&& ft_strncmp(line, "C", ft_find_char_index(line, ' '))
 		&& game->coor->n_coor < 6)
 		(*flag) = 1;
-	game->coor->north   = get_and_save_coor(game, game->coor->north, "NO", line);
-	game->coor->south   = get_and_save_coor(game, game->coor->south, "SO", line);
-	game->coor->west    = get_and_save_coor(game, game->coor->west, "WE", line);
-	game->coor->east    = get_and_save_coor(game, game->coor->east, "EA", line);
-	game->coor->floor   = get_and_save_coor(game, game->coor->floor, "F", line);
+	game->coor->north = get_and_save_coor(game, game->coor->north, "NO", line);
+	game->coor->south = get_and_save_coor(game, game->coor->south, "SO", line);
+	game->coor->west = get_and_save_coor(game, game->coor->west, "WE", line);
+	game->coor->east = get_and_save_coor(game, game->coor->east, "EA", line);
+	game->coor->floor = get_and_save_coor(game, game->coor->floor, "F", line);
 	game->coor->ceiling = get_and_save_coor(game, game->coor->ceiling, "C", line);
 	if (game->coor->n_coor >= 6 && *line != '\n' && !ft_is_whitespace_only(line))
 		game->start_map = 1;
