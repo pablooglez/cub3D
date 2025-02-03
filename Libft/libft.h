@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:56:42 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 14:43:04 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:20:26 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* Extras */
 int		ft_strcmp(const char *s1, const char *s2);
+long	ft_atol(const char *str);
 
 /* bonus */
 t_list	*ft_lstnew(void *content);

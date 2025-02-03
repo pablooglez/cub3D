@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_and_memory.c                                  :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 17:01:31 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 21:17:45 by pablogon         ###   ########.fr       */
+/*   Created: 2025/02/03 22:19:51 by pablogon          #+#    #+#             */
+/*   Updated: 2025/02/03 22:20:17 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "libft.h"
 
-t_coor	*malloc_coor(t_cub *game)
+long	ft_atol(const char *str)
 {
-	t_coor	*coor;
+	int		i;
+	int		neg;
+	long	res;
 
-	coor = ft_calloc(1, sizeof(t_coor));
-	if (!coor)
-		ft_error(game, 1, "Malloc failed");
-	return (coor);
-}
-
-void ft_init_game(t_cub *game)
-{
-	game->player = ft_calloc(1, sizeof(t_player));
-	if (!game->player)
-		ft_error(game, 1, "Malloc failed");
-	game->coor = malloc_coor(game);
-	game->fd = -1;
+	i = 0;
+	neg = 1;
+	res = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+		neg = -neg;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (ft_isdigit(str[i]))
+	{
+		res = (res * 10) + (str[i] - '0');
+		i++;
+	}
+	return (neg * res);
 }

@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:53:44 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/29 19:48:07 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:24:41 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ int	ft_is_whitespace_only(char *line)
 {
 	int	i;
 
-	if (!line)
-		return (0);
 	i = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if (line[i] != ' ' && (line[i] < 9 || line[i] > 13))
 			return (0);

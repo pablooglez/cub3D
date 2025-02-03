@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 19:35:39 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:12:06 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_cub
 	mlx_t			*init;
 	mlx_image_t		*img_window;
 	int				fd;
-	char			**map;
+	char			*map[1024];
 	int				map_len;
 	int				error_flag;
 	int				start_map;

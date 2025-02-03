@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:42:15 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 19:44:27 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:50:02 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ static int	ft_check_character(t_cub *game, char current, char next)
 static int	ft_check_walls(t_cub *game, int y, int x)
 {
 		if (game->map[y][x] && !ft_strchr("10NSWE ", game->map[y][x]))
+		{
+			printf("*%s*\n", game->map[y]);
 			return (ft_error(game, 1, "Invalid character on map."), 0);
+		}
 		if (ft_strchr("0NSWE", game->map[y][x]) && (y == 0 || !game->map[y - 1]))
 			return (ft_error(game, 1, "Map not closed property"), 0);
 		else if (ft_strchr("0NSWE", game->map[y][x]) && !game->map[y + 1])
@@ -41,7 +44,7 @@ static int	ft_check_walls(t_cub *game, int y, int x)
 		return (1);
 }
 
-static void	fill_map_with_spaces(t_cub *game)
+void	fill_map_with_spaces(t_cub *game)
 {
 	size_t	max;
 	int		y;
@@ -92,7 +95,7 @@ void	ft_check_map(t_cub *game, int y, int x)
 {
 	if (game->coor->n_coor != 6)
 		ft_error (game, 1, "There is not a texture");
-	if (!game->map)
+	if (!game->map[0])
 		return (ft_error(game, 1, "There is not a map"));
 	fill_map_with_spaces(game);
 	while (game->map[++y])

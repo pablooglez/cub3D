@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:03:11 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 16:48:09 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:57:01 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ void	free_array(char **array)
 
 void	free_game(t_cub *game)
 {
-	if (game->map)
-		free_array(game->map);
+	int i;
+
+	i = -1;
+	while (game->map[++i])
+		free(game->map[i]);
 	if (game->player)
 		free(game->player);
 	if (game->coor)
