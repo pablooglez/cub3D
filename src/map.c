@@ -3,93 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 21:37:55 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:55:20 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
+static char	*get_and_save_coor(t_cub *game, char *dst,
+	char *coor, char *line)
 {
-	printf("%d\n",game->coor->n_coor);
-	if (!dst && !ft_strncmp(line, coor, ft_find_char_index(line, ' ')))
-	{
-		game->coor->n_coor++;
-		return (ft_substr(line, 0, ft_strlen(line) - 1));
-	}
-	if (dst)
+	int		coor_len;
+	char	*start;
+	char	*path;
+
+	if (!line || !*line || ft_is_whitespace_only(line))
 		return (dst);
-	return (NULL);
-}
-
-static void	ft_save_coor(t_cub *game, char *line, int *flag)
-{
-	if (*line != '\n' && ft_strlen(line) > 0
-		&& ft_strncmp(line, "NO", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "SO", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "WE", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "EA", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "F", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "C", ft_find_char_index(line, ' '))
-		&& game->coor->n_coor < 6)
-		(*flag) = 1;
-	game->coor->north   = get_and_save_coor(game, game->coor->north, "NO", line);
-	game->coor->south   = get_and_save_coor(game, game->coor->south, "SO", line);
-	game->coor->west    = get_and_save_coor(game, game->coor->west, "WE", line);
-	game->coor->east    = get_and_save_coor(game, game->coor->east, "EA", line);
-	game->coor->floor   = get_and_save_coor(game, game->coor->floor, "F", line);
-	game->coor->ceiling = get_and_save_coor(game, game->coor->ceiling, "C", line);
-	if (game->coor->n_coor >= 6 && *line != '\n' && !ft_is_whitespace_only(line))
-		game->start_map = 1;
-}
-
-static int	check_newline(char *line)
-{
-	int	i;
-	
-	if (!line)
-		return (1);
-	i = 0;
-	while (line[i])
+	coor_len = ft_strlen(coor);
+	if (!dst && !ft_strncmp(line, coor, coor_len)
+		&& (line[coor_len] == ' ' || line[coor_len] == '\t'))
 	{
-		if (line[i] == '\n')
-			return (0);
-		i++;
+		start = (char *)(line + coor_len);
+		while (*start == ' ' || *start == '\t')
+			start++;
+		path = ft_strdup(start);
+		if (path && path[ft_strlen(path) - 1] == '\n')
+			path[ft_strlen(path) - 1] = '\0';
+		game->coor->n_coor++;
+		return (path);
 	}
-	return (1);	
+	return (dst);
 }
 
-void	ft_get_map(t_cub *game, char *aux, char *result)
+static void	ft_save_coor(t_cub *game, char *line)
+{
+	game->coor->north = get_and_save_coor(game,
+		game->coor->north, "NO", line);
+	game->coor->south = get_and_save_coor(game,
+		game->coor->south, "SO", line);
+	game->coor->west = get_and_save_coor(game,
+		game->coor->west, "WE", line);
+	game->coor->east = get_and_save_coor(game,
+		game->coor->east, "EA", line);
+	game->coor->floor = get_and_save_coor(game,
+		game->coor->floor, "F", line);
+	game->coor->ceiling = get_and_save_coor(game,
+		game->coor->ceiling, "C", line);
+}
+
+static char	*append_map_line(char *result, char *line)
+{
+	char	*aux;
+
+	aux = result;
+	if (!aux)
+		result = ft_strdup(line);
+	else
+	{
+		result = ft_strjoin(aux, line);
+		free(aux);
+	}
+	return (result);
+}
+
+
+void	ft_get_map(t_cub *game)
 {
 	char	*line;
-	int		flag;
+	char	*result;
 
-	flag = 0;
-	line = get_next_line(game->fd);
-	while (line)
+	result = NULL;
+	while ((line = get_next_line(game->fd)))
 	{
 		if (!game->start_map)
-			ft_save_coor(game, line, &flag);
-		else if (game->start_map)
 		{
-			aux = ft_strdup(result);
-			result = ft_strjoin(aux, line);
-			if (!check_newline(result))
-			{
-				printf("%s\n", result);
-				flag = 1;
-			}
+			ft_save_coor(game, line);
+			if (line[0] == '1' || line[0] == '0')
+				game->start_map = 1;
 		}
+		if (game->start_map && (line[0] == '1' || line[0] == '0'))
+			result = append_map_line(result, line);
 		free(line);
-		line = get_next_line(game->fd);
 	}
-	if (result && !flag)
-		game->map = ft_split(result, '\n');
 	if (result)
+	{
+		game->map = ft_split(result, '\n');
 		free(result);
-	if (flag)
-		ft_error(game, 1, "Unrecognized line");
+	}
 }
+
