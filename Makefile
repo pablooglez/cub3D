@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
+#    By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/02/03 21:57:31 by pablogon         ###   ########.fr        #
+#    Updated: 2025/02/05 11:48:50 by albelope         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ SRCS	:=	src/check_file.c \
 			src/main.c\
 			src/map.c \
 			src/utils.c \
+			src/draw_map.c \
+			src/raycasting.c \
 
 
 OBJS	:= ${SRCS:.c=.o}

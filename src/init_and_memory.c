@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_and_memory.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:01:31 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 21:17:45 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:50:22 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ void ft_init_game(t_cub *game)
 	if (!game->player)
 		ft_error(game, 1, "Malloc failed");
 	game->coor = malloc_coor(game);
+	if (!game->coor)
+		ft_error(game, 1, "Malloc failed");
 	game->fd = -1;
+	game->rays = ft_calloc(WIN_WIDTH, sizeof(t_ray));
+	if (!game->rays)
+		ft_error(game, 1, "Malloc failed for rays");
 }

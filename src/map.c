@@ -3,123 +3,101 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 23:05:03 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:40:24 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
+static char	*get_and_save_coor(t_cub *game, char *dst,
+	char *coor, char *line)
 {
-	if (!line || !*line || line[0] == '\n') return (NULL);
-	if (!ft_strncmp(line, coor, ft_find_char_index(line, ' ')))
-	{
-		if (dst)
-		{
-			ft_error(game, 1, "Duplicate texture");
-		}
-		game->coor->n_coor++;
-		return (ft_substr(line, 0, ft_strlen(line) - 1));
-	}
-	if (dst)
+	int		coor_len;
+	char	*start;
+	char	*path;
+
+	if (!line || !*line || ft_is_whitespace_only(line))
 		return (dst);
-	return (NULL);
-}
-
-static int	ft_save_coor(t_cub *game, char *line, int *flag)
-{
-	if (*line != '\n' && ft_strlen(line) > 0
-		&& ft_strncmp(line, "NO", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "SO", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "WE", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "EA", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "F", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "C", ft_find_char_index(line, ' '))
-		&& game->coor->n_coor < 6)
-			(*flag) = 1;
-	game->coor->north = get_and_save_coor(game, game->coor->north, "NO", line);
-	game->coor->south = get_and_save_coor(game, game->coor->south, "SO", line);
-	game->coor->west = get_and_save_coor(game, game->coor->west, "WE", line);
-	game->coor->east = get_and_save_coor(game, game->coor->east, "EA", line);
-	game->coor->floor = get_and_save_coor(game, game->coor->floor, "F", line);
-	game->coor->ceiling = get_and_save_coor(game, game->coor->ceiling, "C", line);
-	printf("%d\n", game->coor->n_coor);
-	if (game->coor->n_coor >= 6)
-		game->start_map = 1;
-	return (game->start_map);
-}
-
-int	check_newline(char *line)
-{
-	int	i;
-	
-	if (!line)
-		return (1);
-	i = 0;
-	while (line[i])
+	coor_len = ft_strlen(coor);
+	if (!dst && !ft_strncmp(line, coor, coor_len)
+		&& (line[coor_len] == ' ' || line[coor_len] == '\t'))
 	{
-		if (line[i] == '\n')
-			return (0);
-		i++;
+		start = (char *)(line + coor_len);
+		while (*start == ' ' || *start == '\t')
+			start++;
+		path = ft_strdup(start);
+		if (path && path[ft_strlen(path) - 1] == '\n')
+			path[ft_strlen(path) - 1] = '\0';
+		game->coor->n_coor++;
+		return (path);
 	}
-	return (1);	
+	return (dst);
 }
 
-void	ft_get_map(t_cub *game, char *aux, char *result)
+static void	ft_save_coor(t_cub *game, char *line)
+{
+	if (!game->coor)
+		ft_error(game, 1, "No se ha inicializado la estructura de coordenadas.");
+	game->coor->north = get_and_save_coor(game,
+		game->coor->north, "NO", line);
+	game->coor->south = get_and_save_coor(game,
+		game->coor->south, "SO", line);
+	game->coor->west = get_and_save_coor(game,
+		game->coor->west, "WE", line);
+	game->coor->east = get_and_save_coor(game,
+		game->coor->east, "EA", line);
+	game->coor->floor = get_and_save_coor(game,
+		game->coor->floor, "F", line);
+	game->coor->ceiling = get_and_save_coor(game,
+		game->coor->ceiling, "C", line);
+}
+
+static char	*append_map_line(char *result, char *line)
+{
+	char	*aux;
+
+	aux = result;
+	if (!aux)
+		result = ft_strdup(line);
+	else
+	{
+		result = ft_strjoin(aux, line);
+		free(aux);
+	}
+	return (result);
+}
+
+
+void	ft_get_map(t_cub *game)
 {
 	char	*line;
-	int		flag;
-	int i = 0;
+	char	*result;
 
-	(void) aux;
-	(void) result;
-
-	flag = 0;
-	line = get_next_line(game->fd);
-	while (line)
+	result = NULL;
+	while ((line = get_next_line(game->fd)))
 	{
 		if (!game->start_map)
-			if (ft_save_coor(game, line, &flag))
-			{
-				free(line);
-				line = get_next_line(game->fd);
-				continue;
-			}
-		if (game->start_map == 1) {
-			if (ft_is_whitespace_only(line)) {
-				free(line);
-				line = get_next_line(game->fd);
-				continue;
-			}
-			game->start_map = 2;
-		}
-		if (game->start_map == 2)
 		{
-			if (ft_is_whitespace_only(line))
-				flag = 9;
-			else
-			{
-				if (line && line[0] && line[ft_strlen(line) - 1] == '\n')
-					line[ft_strlen(line) - 1] = '\0';
-				game->map[i++] = ft_strdup(line);
-				if (i == 1024)
-					flag = 8;
-			}
-			
+			ft_save_coor(game, line);
+			if (line[0] == '1' || line[0] == '0')
+				game->start_map = 1;
 		}
+		if (game->start_map && (line[0] == '1' || line[0] == '0'))
+			result = append_map_line(result, line);
 		free(line);
-		if (flag > 0)
-			break;
-		line = get_next_line(game->fd);
 	}
-	game->map[i] = NULL;
 	if (result)
+	{
+		game->map = ft_split(result, '\n');
 		free(result);
-	if (flag == 8)
-		ft_error(game, 1, "Tas pasao, tio");
-	if (flag)
-		ft_error(game, 1, "Unrecognized line");
+	}
+	printf("  Rutas de texturas:\n");
+	printf("   North: %s\n", game->coor->north);
+	printf("   South: %s\n", game->coor->south);
+	printf("   West: %s\n", game->coor->west);
+	printf("   East: %s\n", game->coor->east);
 }
+

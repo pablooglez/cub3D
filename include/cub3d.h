@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 21:12:06 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:54:23 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,31 @@ typedef struct s_coor
 	mlx_texture_t	*txt_east_i;
 }	t_coor;
 
+
+typedef struct s_ray
+{
+	float	ray_angle;
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	distance;
+	int		hit_vertical; // 1 si el rayo chocó en una pared vertical, 0 si fue en una horizontal
+}	t_ray;
+
 typedef struct s_cub
 {
 	mlx_t			*init;
 	mlx_image_t		*img_window;
 	int				fd;
-	char			*map[1024];
+	char			**map;
 	int				map_len;
 	int				error_flag;
 	int				start_map;
 	int				n_player;
 	t_player		*player;
 	t_coor			*coor;
+	t_ray			*rays;
 }	t_cub;
 
 //----------------CHECK_FILE--------------------//
@@ -97,7 +110,7 @@ void	free_game(t_cub *game);
 
 //----------------MAP-----------------------//
 
-void	ft_get_map(t_cub *game, char *aux, char *result);
+void	ft_get_map(t_cub *game);
 
 //----------------UTILS---------------------//
 void	change_spaces(t_cub *game);
@@ -107,4 +120,10 @@ int		ft_is_whitespace_only(char *line);
 //------------------UTILS2---------------------//
 t_coor			*malloc_coor(t_cub *game);
 void			ft_init_game(t_cub *game);
+
+
+
+void			draw_map(t_cub *game);
+void			cast_rays(void *param);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:17:11 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 22:26:48 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:24:41 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int main(int argc, char **argv)
 		return (1);
 	ft_init_game(game);
 	ft_check_file(game,argv[1]);
-	ft_get_map(game, NULL, NULL);
+	ft_get_map(game);
 	//ft_check_color()
 	ft_check_map(game, -1, -1);
-	//ft_mlx_init(game);
+	ft_mlx_init(game);
 	return (0);
 }
