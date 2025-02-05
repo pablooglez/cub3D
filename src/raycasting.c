@@ -6,7 +6,7 @@
 /*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:46:33 by albelope          #+#    #+#             */
-/*   Updated: 2025/02/05 12:39:49 by albelope         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:05:56 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,32 @@ static void	draw_texture(t_cub *game, int x, int y, uint32_t color)
 		mlx_put_pixel(game->img_window, x, y, color);
 }
 
+static void	get_wall_limits(int wall_height, int *draw_start, int *draw_end)
+{
+	*draw_start = (WIN_HEIGHT / 2) - (wall_height / 2);
+	*draw_end = (WIN_HEIGHT / 2) + (wall_height / 2);
+	if (*draw_start < 0)
+		*draw_start = 0;
+	if (*draw_end >= WIN_HEIGHT)
+		*draw_end = WIN_HEIGHT - 1;
+}
+
+static uint32_t	get_texture_color(mlx_texture_t *texture, int tex_x, int tex_y)
+{
+	uint8_t	*pixel;
+
+	if (tex_x < 0)
+		tex_x = 0;
+	if (tex_x >= (int)texture->width)
+		tex_x = texture->width - 1;
+	if (tex_y < 0)
+		tex_y = 0;
+	if (tex_y >= (int)texture->height)
+		tex_y = texture->height - 1;
+	pixel = &texture->pixels[(tex_y * texture->width + tex_x) * 4];
+	return ((pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3]);
+}
+
 static void	draw_vertical_line(t_cub *game, int x, int wall_height)
 {
 	int				y;
@@ -74,30 +100,26 @@ static void	draw_vertical_line(t_cub *game, int x, int wall_height)
 	int				draw_start;
 	int				draw_end;
 	mlx_texture_t	*texture;
-	uint8_t			*pixel;
 	uint32_t		color;
 
 	texture = get_texture(game, x);
 	if (!texture)
 		return ;
-	draw_start = (WIN_HEIGHT / 2) - (wall_height / 2);
-	draw_end = (WIN_HEIGHT / 2) + (wall_height / 2);
-	if (draw_start < 0)
-		draw_start = 0;
-	if (draw_end >= WIN_HEIGHT)
-		draw_end = WIN_HEIGHT - 1;
+	get_wall_limits(wall_height, &draw_start, &draw_end);
 	y = draw_start;
 	while (y < draw_end)
 	{
 		tex_y = ((y - draw_start) * texture->height) / wall_height;
 		tex_x = ((int)(game->rays[x].wall_hit_x * texture->width) 
 			+ (int)(game->rays[x].wall_hit_y * texture->width)) % (int)texture->width;
-		pixel = &texture->pixels[(tex_y * texture->width + tex_x) * 4];
-		color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
+		color = get_texture_color(texture, tex_x, tex_y);
 		draw_texture(game, x, y, color);
 		y++;
 	}
 }
+
+
+
 
 void	cast_rays(void *param)
 {
