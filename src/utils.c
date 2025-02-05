@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:53:44 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 21:24:41 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:44:44 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,14 @@ void	change_spaces(t_cub *game)
 	}
 }
 
-int	ft_find_char_index(char *s, int c)
+int	ft_find_char_index(char *s)
 {
 	int		i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (i);
+	while (s && s[i] && !ft_isspace(s[i]))
 		i++;
-	}
-	if (c == '\0' && s[i] == '\0')
-		return (i);
-	return (0);
+	return (i);
 }
 
 int	ft_is_whitespace_only(char *line)

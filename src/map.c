@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 23:05:03 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:14:29 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,58 +14,47 @@
 
 static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
 {
+	int i;
+	
+	if (dst)
+		return (dst);
 	if (!line || !*line || line[0] == '\n') return (NULL);
-	if (!ft_strncmp(line, coor, ft_find_char_index(line, ' ')))
+	i = ft_find_char_index(line);
+	if (i && !ft_strncmp(line, coor, i))
 	{
 		if (dst)
 		{
 			ft_error(game, 1, "Duplicate texture");
 		}
-		game->coor->n_coor++;
+		game->coor.n_coor++;
 		return (ft_substr(line, 0, ft_strlen(line) - 1));
 	}
-	if (dst)
-		return (dst);
 	return (NULL);
 }
 
 static int	ft_save_coor(t_cub *game, char *line, int *flag)
 {
-	if (*line != '\n' && ft_strlen(line) > 0
-		&& ft_strncmp(line, "NO", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "SO", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "WE", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "EA", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "F", ft_find_char_index(line, ' '))
-		&& ft_strncmp(line, "C", ft_find_char_index(line, ' '))
-		&& game->coor->n_coor < 6)
+	int i;
+
+	i = ft_find_char_index(line);
+	if (i && *line != '\n' && ft_strlen(line) > 0
+		&& ft_strncmp(line, "NO", i)
+		&& ft_strncmp(line, "SO", i)
+		&& ft_strncmp(line, "WE", i)
+		&& ft_strncmp(line, "EA", i)
+		&& ft_strncmp(line, "F", i)
+		&& ft_strncmp(line, "C", i)
+		&& game->coor.n_coor < 6)
 			(*flag) = 1;
-	game->coor->north = get_and_save_coor(game, game->coor->north, "NO", line);
-	game->coor->south = get_and_save_coor(game, game->coor->south, "SO", line);
-	game->coor->west = get_and_save_coor(game, game->coor->west, "WE", line);
-	game->coor->east = get_and_save_coor(game, game->coor->east, "EA", line);
-	game->coor->floor = get_and_save_coor(game, game->coor->floor, "F", line);
-	game->coor->ceiling = get_and_save_coor(game, game->coor->ceiling, "C", line);
-	printf("%d\n", game->coor->n_coor);
-	if (game->coor->n_coor >= 6)
+	game->coor.north = get_and_save_coor(game, game->coor.north, "NO", line);
+	game->coor.south = get_and_save_coor(game, game->coor.south, "SO", line);
+	game->coor.west = get_and_save_coor(game, game->coor.west, "WE", line);
+	game->coor.east = get_and_save_coor(game, game->coor.east, "EA", line);
+	game->coor.floor = get_and_save_coor(game, game->coor.floor, "F", line);
+	game->coor.ceiling = get_and_save_coor(game, game->coor.ceiling, "C", line);
+	if (game->coor.n_coor >= 6)
 		game->start_map = 1;
 	return (game->start_map);
-}
-
-int	check_newline(char *line)
-{
-	int	i;
-	
-	if (!line)
-		return (1);
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '\n')
-			return (0);
-		i++;
-	}
-	return (1);	
 }
 
 void	ft_get_map(t_cub *game, char *aux, char *result)

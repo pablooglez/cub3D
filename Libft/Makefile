@@ -6,7 +6,7 @@
 #    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/04 18:24:23 by pablogon          #+#    #+#              #
-#    Updated: 2025/02/03 22:20:43 by pablogon         ###   ########.fr        #
+#    Updated: 2025/02/05 19:12:58 by pablogon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus
 ft_lstiter_bonus.c ft_lstmap_bonus.c \
 get_next_line_bonus.c get_next_line_utils_bonus.c \
 ft_atol.c \
+ft_isspace.c \
 
 OFILES = $(SRCS:.c=.o)
 BOFILES = $(BSRCS:.c=.o)

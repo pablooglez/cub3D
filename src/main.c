@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:17:11 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 22:26:48 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:10:57 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int main(int argc, char **argv)
 	ft_init_game(game);
 	ft_check_file(game,argv[1]);
 	ft_get_map(game, NULL, NULL);
-	//ft_check_color()
+	ft_check_color(game, game->coor.floor, &game->coor.t_floor);
+	ft_check_color(game, game->coor.ceiling, &game->coor.t_ceiling);
 	ft_check_map(game, -1, -1);
-	//ft_mlx_init(game);
+	free_game(game);
+	ft_mlx_init(game);
 	return (0);
 }

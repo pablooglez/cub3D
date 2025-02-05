@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:42:15 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 22:40:57 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:15:57 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,23 @@ static int	ft_check_character(t_cub *game, char current, char next)
 	else if (current == '1' || current == ' ')
 		return (1);
 	else if (current == '0' && (!ft_strchr("10NSWE", next) || !next))
-		return (ft_error(game, 1, "Map not closed properly."), 0);
+		return (ft_error(game, 1, "Invalid map."), 0);
 	else if (ft_strchr("NSWE", current) && (!ft_strchr("10", next) || !next))
-		return (ft_error(game, 1, "Map not closed properly."), 0);
+		return (ft_error(game, 1, "Invalid map."), 0);
 	return (1);
 }
 
 static int	ft_check_walls(t_cub *game, int y, int x)
 {
-		if (game->map[y][x] && !ft_strchr("10NSWE ", game->map[y][x]))
-		{
-			printf("*%s*\n", game->map[y]);
-			return (ft_error(game, 1, "Invalid character on map."), 0);
-		}
 		if (ft_strchr("0NSWE", game->map[y][x]) && (y == 0 || !game->map[y - 1]))
-			return (ft_error(game, 1, "Map not closed property"), 0);
+			return (ft_error(game, 1, "Invalid map"), 0);
 		else if (ft_strchr("0NSWE", game->map[y][x]) && !game->map[y + 1])
-			return (ft_error(game, 1, "Map not closed properly."), 0);
+			return (ft_error(game, 1, "Invalid map."), 0);
 		else if (ft_strchr("0NSWE", game->map[y][x])
 			&& (x == 0 || !game->map[y][x - 1]))
-			return (ft_error(game, 1, "Map not closed properly."), 0);
+			return (ft_error(game, 1, "Invalid map."), 0);
 		else if (ft_strchr("0NSWE", game->map[y][x]) && !game->map[y][x + 1])
-			return (ft_error(game, 1, "Map not closed properly."), 0);
+			return (ft_error(game, 1, "Invalid map."), 0);
 		return (1);
 }
 
@@ -93,7 +88,7 @@ static void	initialize_player_position(t_cub *game)
 
 void	ft_check_map(t_cub *game, int y, int x)
 {
-	if (game->coor->n_coor != 6)
+	if (game->coor.n_coor != 6)
 		ft_error (game, 1, "There is not a texture");
 	if (!game->map[0])
 		return (ft_error(game, 1, "There is not a map"));
@@ -104,11 +99,13 @@ void	ft_check_map(t_cub *game, int y, int x)
 		while (game->map[y][++x])
 		{
 			ft_check_walls(game, y, x);
-			if (y > 0 && x > 0)
+			if (y >= 0 && x >= 0)
 			{
-				ft_check_character(game, game->map[y][x], game->map[y][x - 1]);
+				if (x > 0)
+					ft_check_character(game, game->map[y][x], game->map[y][x - 1]);
 				ft_check_character(game, game->map[y][x], game->map[y][x + 1]);
-				ft_check_character(game, game->map[y][x], game->map[y - 1][x]);
+				if (y > 0)
+					ft_check_character(game, game->map[y][x], game->map[y - 1][x]);
 				if (game->map[y] && game->map[y + 1])
 					ft_check_character(game, game->map[y][x], game->map[y + 1][x]);
 			}

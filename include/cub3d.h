@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/03 21:12:06 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:15:21 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ typedef struct s_coor
 	char			*floor;
 	char			*ceiling;
 	int				n_coor;
-	t_color			*t_floor;
-	t_color			*t_ceiling;
+	t_color			t_floor;
+	t_color			t_ceiling;
 	mlx_texture_t	*txt_north_i;
 	mlx_texture_t	*txt_south_i;
 	mlx_texture_t	*txt_west_i;
@@ -73,14 +73,19 @@ typedef struct s_cub
 	int				start_map;
 	int				n_player;
 	t_player		*player;
-	t_coor			*coor;
+	t_coor			coor;
 }	t_cub;
+
+//----------------CHECK_COLOR--------------------//
+void	ft_check_color(t_cub *game, char *line, t_color *color);
 
 //----------------CHECK_FILE--------------------//
 void	ft_check_file(t_cub *game, char *str);
 
 //----------------CHECK_MAP--------------------//
+void	fill_map_with_spaces(t_cub *game);
 void	ft_check_map(t_cub *game, int y, int x);
+
 
 //----------------CREATE_GAME--------------------//
 void	ft_mlx_init(t_cub *game);
@@ -95,16 +100,15 @@ void	free_coor(t_coor *coor);
 void	free_array(char **array);
 void	free_game(t_cub *game);
 
-//----------------MAP-----------------------//
+//------------------INIT_AND_MEMORY---------------------//
+void			ft_init_game(t_cub *game);
 
+//----------------MAP-----------------------//
 void	ft_get_map(t_cub *game, char *aux, char *result);
 
 //----------------UTILS---------------------//
 void	change_spaces(t_cub *game);
-int		ft_find_char_index(char *s, int c);
+int		ft_find_char_index(char *s);
 int		ft_is_whitespace_only(char *line);
 
-//------------------UTILS2---------------------//
-t_coor			*malloc_coor(t_cub *game);
-void			ft_init_game(t_cub *game);
 #endif
