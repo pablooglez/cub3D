@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:05:27 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/06 22:26:36 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/06 22:27:57 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static unsigned int	get_rgba(t_color *color);
 void fill_world_data(t_cub *game)
 {
 	int a;
-    for (int i = 0; i < WIN_WIDTH; i++) {
-        game->rays[i].column = i;
-        game->rays[i].side = EAST;
+	for (int i = 0; i < WIN_WIDTH; i++) {
+		game->rays[i].column = i;
+		game->rays[i].side = EAST;
 		if (i < 400) a = 600;
 		if (i >= 400 && i <= 800) { a++; game->rays[i].side = SOUTH; }
 		if (i > 800 && i <= 900) game->rays[i].side = WEST;
 		if (i > 900 && i <= 1200) a = 100;
 		if (i > 1200) a = 1200;
-        game->rays[i].length = a;
-    }
+		game->rays[i].length = a;
+	}
 }
 
 void draw_wall(t_cub *game, int x, int y, int side) {
