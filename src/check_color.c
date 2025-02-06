@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:11:22 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/05 19:46:01 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/06 21:10:28 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_check_color(t_cub *game, char *line, t_color *color)
 	error = (line == NULL);
 	if (error || ft_strnstr(line, ",,", ft_strlen(line)))
 		ft_error(game, 1, "Invalid RGB value (must be 0-255)");
-	line++;
 	rgb = ft_split(line, ',');
 	while (rgb && rgb[i] && !error)
 	{

@@ -6,8 +6,8 @@ WE ./textures/wall_3.png
 
 EA ./textures/wall_4.png
 
-F 225,30,0
-C 220,100,0
+F 155,155,155
+C 70,130,180
 
 1111111111
 1000000001

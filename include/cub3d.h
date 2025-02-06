@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/05 20:15:21 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/06 22:20:12 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ typedef struct s_player
 	float	view;
 }	t_player;
 
+// template
+enum e_side {
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
+};
+
+typedef struct s_ray {
+	int column;
+	int length;
+	int side;
+}	t_ray;
+
+// template
+
 typedef struct s_coor
 {
 	char			*north;
@@ -74,6 +90,7 @@ typedef struct s_cub
 	int				n_player;
 	t_player		*player;
 	t_coor			coor;
+	t_ray			rays[WIN_WIDTH];
 }	t_cub;
 
 //----------------CHECK_COLOR--------------------//
@@ -88,6 +105,8 @@ void	ft_check_map(t_cub *game, int y, int x);
 
 
 //----------------CREATE_GAME--------------------//
+void	put_textures(void *param);
+void	load_textures(t_cub *game);
 void	ft_mlx_init(t_cub *game);
 
 //----------------ERROR---------------------//
@@ -101,7 +120,7 @@ void	free_array(char **array);
 void	free_game(t_cub *game);
 
 //------------------INIT_AND_MEMORY---------------------//
-void			ft_init_game(t_cub *game);
+void	ft_init_game(t_cub *game);
 
 //----------------MAP-----------------------//
 void	ft_get_map(t_cub *game, char *aux, char *result);

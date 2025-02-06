@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/05 20:14:29 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/06 21:09:42 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
 {
-	int i;
+	int	i;
 	
 	if (dst)
 		return (dst);
@@ -27,6 +27,9 @@ static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
 			ft_error(game, 1, "Duplicate texture");
 		}
 		game->coor.n_coor++;
+		line += i;
+		while (ft_isspace(*line))
+			line++;
 		return (ft_substr(line, 0, ft_strlen(line) - 1));
 	}
 	return (NULL);
