@@ -6,7 +6,7 @@
 #    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/02/06 21:53:38 by pablogon         ###   ########.fr        #
+#    Updated: 2025/02/11 17:03:52 by pablogon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS	:=	src/check_color.c \
 			src/init_and_memory.c \
 			src/main.c\
 			src/map.c \
+			src/moving.c \
 			src/utils.c \
 
 

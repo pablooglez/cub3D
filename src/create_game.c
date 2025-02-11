@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:05:27 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/07 20:17:25 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:54:38 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,6 @@ void	ft_mlx_init(t_cub *game)																// Inicializa MLX42 y configura el 
 	mlx_image_to_window(game->init, game->img_window, 0, 0);									// Añade la imagen a la ventana
 	fill_world_data(game);																		// Configura los rayos del mundo
 	mlx_loop_hook(game->init, put_textures, game);												// Asigna la función put_textures al bucle de MLX
-	//mlx_key_hook(game->init, &ft_keymoves, game);												// Manejo de eventos de teclado (comentado)
+	mlx_key_hook(game->init, &ft_keymoves, game);												// Manejo de eventos de teclado (comentado)
 	mlx_loop(game->init);																		// Inicia el bucle principal de MLX
 }

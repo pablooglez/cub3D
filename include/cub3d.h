@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/06 22:20:12 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:06:08 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	ft_check_file(t_cub *game, char *str);
 void	fill_map_with_spaces(t_cub *game);
 void	ft_check_map(t_cub *game, int y, int x);
 
-
 //----------------CREATE_GAME--------------------//
 void	put_textures(void *param);
 void	load_textures(t_cub *game);
@@ -124,6 +123,9 @@ void	ft_init_game(t_cub *game);
 
 //----------------MAP-----------------------//
 void	ft_get_map(t_cub *game, char *aux, char *result);
+
+//----------------MOVING--------------------//
+void	ft_keymoves(mlx_key_data_t keydata, void *param);
 
 //----------------UTILS---------------------//
 void	change_spaces(t_cub *game);

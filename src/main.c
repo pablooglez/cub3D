@@ -6,13 +6,13 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:17:11 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/07 17:57:44 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:27:11 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_cub	*game;															// Declara un puntero a la estructura t_cub, que almacena la información del juego.
 

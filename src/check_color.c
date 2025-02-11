@@ -6,13 +6,13 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:11:22 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/07 19:30:05 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:44:26 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int check_digit(char *color)												// Función para verificar si una cadena es un número válido o contiene caracteres no permitidos
+static int	check_digit(char *color)												// Función para verificar si una cadena es un número válido o contiene caracteres no permitidos
 {
 	if (ft_is_whitespace_only(color))											// Si la cadena es solo espacios en blanco, retorna error (1).
 		return (1);
@@ -27,7 +27,7 @@ static int check_digit(char *color)												// Función para verificar si una
 
 void	ft_check_color(t_cub *game, char *line, t_color *color)					// Función para validar y guardar un color RGB
 {
-	char **rgb;
+	char	**rgb;
 	int		i;
 	int		error;
 	long	result;
