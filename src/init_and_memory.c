@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_and_memory.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:01:31 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/18 20:12:36 by albelope         ###   ########.fr       */
+/*   Updated: 2025/02/19 21:33:50 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 	game->player->view = 0;
 	game->fd = -1;											// Inicializa el descriptor de archivo en -1 (indica que aún no se ha abierto ningún archivo).
 }*/
-
 void	ft_init_game(t_cub *game)
 {
 	game->player = ft_calloc(1, sizeof(t_player));
@@ -35,5 +34,3 @@ void	ft_init_game(t_cub *game)
 	game->player->rot_speed = 0.15;
 	game->fd = -1;
 }
-
-
