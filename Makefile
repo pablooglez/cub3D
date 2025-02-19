@@ -6,7 +6,7 @@
 #    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/02/11 17:03:52 by pablogon         ###   ########.fr        #
+#    Updated: 2025/02/12 21:09:02 by pablogon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME:= cub3D
 
 CFLAGS:= -g -Wall -Werror -Wextra \
-		  -g -fsanitize=address,undefined \
+		-g -fsanitize=address,undefined \
 		#-Wunreachable-code -Ofast \
 
 CUB3D = include/

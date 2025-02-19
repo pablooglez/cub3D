@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:17:11 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/11 16:27:11 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:34:07 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	ft_check_color(game, game->coor.floor, &game->coor.t_floor);			// Verifica y convierte el color del suelo.
 	ft_check_color(game, game->coor.ceiling, &game->coor.t_ceiling);		// Verifica y convierte el color del techo.
 	ft_check_map(game, -1, -1);												// Verifica la validez del mapa (bordes cerrados, elementos correctos, etc.).
+	//open_textures
 	ft_mlx_init(game);														// Inicializa la librería gráfica MiniLibX y configura la ventana del juego.
 	free_game(game);														// Libera la memoria y recursos utilizados por la estructura game.
 	return (0);																// Finaliza el programa correctamente.
