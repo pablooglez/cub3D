@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/07 19:26:57 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:51:32 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ft_get_map(t_cub *game, char *aux, char *result)								// Función para le
 	line = get_next_line(game->fd);														// Lee la primera línea del archivo.
 	while (line)																		// Mientras haya líneas en el archivo.
 	{
+		printf("linea leida : %s\n", line);
 		if (!game->start_map)															// Si todavía no se ha empezado a leer el mapa.
 			if (ft_save_coor(game, line, &flag))										// Guarda las coordenadas y revisa si se completa la configuración.
 			{
@@ -112,6 +113,7 @@ void	ft_get_map(t_cub *game, char *aux, char *result)								// Función para le
 		line = get_next_line(game->fd);													// Lee la siguiente línea.
 	}
 	game->map[i] = NULL;																// Termina el array del mapa con NULL.
+														
 	if (result)																			// Si result tenía algún contenido previo, lo libera.
 		free(result);
 	if (flag == 8)																		// Si se pasó del límite de líneas permitidas en el mapa.

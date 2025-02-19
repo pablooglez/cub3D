@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/11 18:06:08 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:38:09 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define FOV 60
+//# define FOV 60
+#ifndef M_PI
+# define M_PI 3.14159265358979323846
+#endif
+# define FOV (60.0 * (M_PI / 180.0))
 # define WALL_SIZE 640 
 
 typedef struct s_color
@@ -43,6 +47,8 @@ typedef struct s_player
 	float	x;
 	float	y;
 	float	view;
+	float	move_speed;
+	float	rot_speed;
 }	t_player;
 
 // template
@@ -53,13 +59,28 @@ enum e_side {
 	EAST
 };
 
-typedef struct s_ray {
-	int column;
-	int length;
-	int side;
-}	t_ray;
+typedef struct s_ray
+{
+	double			ray_angle;								// Ángulo del rayo
+	double			delta_x;								// Avance en x
+	double			delta_y;								// Avance en y
+	double			delta_dist_x;							// Distancia diferencial en x
+	double			delta_dist_y;							// Distancia diferencial en y
+	double			perpection_distance;					// Distancia de la proyección
+	double			distance;								// Distancia a la pared
+	double			side_dist_x;							// Distancia al siguiente borde en x
+	double			side_dist_y;							// Distancia al siguiente borde en y
+	double			hit_x;									// Coordenada x del punto de impacto
+	double			hit_y;									// Coordenada y del punto de impacto
+	int				map_x;									// Coordenada x de la celda actual
+	int				map_y;									// Coordenada y de la celda actual
+	int				step_x;									// Dirección de paso en x
+	int				step_y;									// Dirección de paso en y
+	int				side;									// Lado impactado por el rayo
+	int				column;
+	int				length;
 
-// template
+}	t_ray;
 
 typedef struct s_coor
 {
@@ -91,6 +112,7 @@ typedef struct s_cub
 	t_player		*player;
 	t_coor			coor;
 	t_ray			rays[WIN_WIDTH];
+	int				keys[256];
 }	t_cub;
 
 //----------------CHECK_COLOR--------------------//
@@ -126,6 +148,10 @@ void	ft_get_map(t_cub *game, char *aux, char *result);
 
 //----------------MOVING--------------------//
 void	ft_keymoves(mlx_key_data_t keydata, void *param);
+void	ft_process_movement(void *param);
+
+//----------------RAYCASTING---------------------//
+void	ft_raycasting(t_cub *game);
 
 //----------------UTILS---------------------//
 void	change_spaces(t_cub *game);

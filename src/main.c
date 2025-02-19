@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:17:11 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/11 16:27:11 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:32:04 by albelope         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int	main(int argc, char **argv)
 	ft_check_file(game,argv[1]);											// Verifica y procesa el archivo de configuración o mapa.
 	ft_get_map(game, NULL, NULL);											// Carga el mapa en la estructura game.
 	ft_check_color(game, game->coor.floor, &game->coor.t_floor);			// Verifica y convierte el color del suelo.
+	printf("Color del suelo (floor): %d, %d, %d\n",
+    	game->coor.t_floor.r, game->coor.t_floor.g, game->coor.t_floor.b);
 	ft_check_color(game, game->coor.ceiling, &game->coor.t_ceiling);		// Verifica y convierte el color del techo.
+	printf("Color del techo (ceiling): %d, %d, %d\n",
+    	game->coor.t_ceiling.r, game->coor.t_ceiling.g, game->coor.t_ceiling.b);
 	ft_check_map(game, -1, -1);												// Verifica la validez del mapa (bordes cerrados, elementos correctos, etc.).
 	ft_mlx_init(game);														// Inicializa la librería gráfica MiniLibX y configura la ventana del juego.
 	free_game(game);														// Libera la memoria y recursos utilizados por la estructura game.

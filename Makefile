@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
+#    By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/02/11 17:03:52 by pablogon         ###   ########.fr        #
+#    Updated: 2025/02/17 18:37:36 by albelope         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,8 @@ SRCS	:=	src/check_color.c \
 			src/main.c\
 			src/map.c \
 			src/moving.c \
+			src/raycasting.c \
+			src/textures.c \
 			src/utils.c \
 
 
