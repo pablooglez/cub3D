@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:42:15 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/19 21:48:05 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:57:56 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_check_map(t_cub *game, int y, int x)
 			{
 				if (x > 0)
 					ft_check_char(game, game->map[y][x], game->map[y][x - 1]);
-				ft_check_character(game, game->map[y][x], game->map[y][x + 1]);
+				ft_check_char(game, game->map[y][x], game->map[y][x + 1]);
 				if (y > 0)
 					ft_check_char(game, game->map[y][x], game->map[y - 1][x]);
 				if (game->map[y] && game->map[y + 1])
