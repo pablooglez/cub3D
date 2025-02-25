@@ -22,19 +22,19 @@ cub3D/
 │   ├── create_game.c
 │   ├── error.c
 │   ├── free.c
-    ├── ft_dda_algorithm.c
-    ├── init_and_memory.c
-    ├── main.c
-    ├── map.c
-    ├── moving.c
-    ├── player_position.c
-    ├── raycasting.c
-    ├── textures.c
-    └── utils.c
+│   ├── ft_dda_algorithm.c
+│   ├── init_and_memory.c
+│   ├── main.c
+│   ├── map.c
+│   ├── moving.c
+│   ├── player_position.c
+│   ├── raycasting.c
+│   ├── textures.c
+│   └── utils.c
 ├── textures/
 │   └──wall_1.png
-    └──wall_2.png
-    └──wall_3.png
-    └──wall_4.png
+│   └──wall_2.png
+│   └──wall_3.png
+│   └──wall_4.png
 ├── Makefile
 ```
