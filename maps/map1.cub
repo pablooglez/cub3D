@@ -7,7 +7,7 @@ WE ./textures/wall_3.png
 EA ./textures/wall_4.png
 
 F 48, 27, 104
-C 9, 24, 51
+C 9, 24, 254
 
 111111111111
 100000000001

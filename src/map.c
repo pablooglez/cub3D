@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/24 21:42:43 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:03:48 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
 		return (dst);
 	if (!line || !*line || line[0] == '\n')
 		return (NULL);
+
 	i = ft_find_char_index(line);
 	if (i && !ft_strncmp(line, coor, i))
 	{

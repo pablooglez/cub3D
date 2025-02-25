@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:11:22 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/24 17:29:42 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:53:05 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	ft_check_color(t_cub *game, char *line, t_color *color)
 			error = 1;
 		i++;
 	}
+	if (i != 3)
+		error = 1;
 	free_array(rgb);
 	if (error)
 		ft_error(game, 1, "Invalid RGB value (must be 0-255)");

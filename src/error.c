@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:19:25 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/24 17:24:53 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:55:22 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_error(const char *msg)
 {
-	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd("Error \n", 2);
 	ft_putendl_fd(msg, 2);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 16:53:44 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/23 12:52:36 by albelope         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:26:14 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int	ft_is_whitespace_only(char *line)
 
 unsigned int	get_rgba(t_color *color)
 {
-	return ((color->r << 24) | (color->g << 16) | (color->b << 8) | 255);
+	return (((unsigned int)color->r << 24) | ((unsigned int)color->g << 16)
+		| ((unsigned int)color->b << 8) | 255);
 }
