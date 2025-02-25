@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:53:24 by pablogon          #+#    #+#             */
-/*   Updated: 2025/01/30 16:32:46 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/24 21:50:13 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*ft_strrchr(const char *str, int c)
 	int			i;
 
 	last = NULL;
-
 	if (!str)
 		return (NULL);
 	i = 0;

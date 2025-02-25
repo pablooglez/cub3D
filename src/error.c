@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:19:25 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/07 17:11:22 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:24:53 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 void	ft_print_error(const char *msg)
 {
-	ft_putstr_fd("Error: ", 2);								// Imprime "Error: " en el descriptor de archivo 2 (stderr).
-	ft_putendl_fd(msg, 2);									// Imprime el mensaje de error seguido de un salto de línea en stderr.
+	ft_putstr_fd("Error: ", 2);
+	ft_putendl_fd(msg, 2);
 }
 
 void	ft_error(t_cub *game, int use, const char *msg)
 {
-	ft_print_error(msg);									// Imprime el mensaje de error recibido.
-
-	if (!use)												// Si use es 0, significa que el error está relacionado con el uso incorrecto del programa.
+	ft_print_error(msg);
+	if (!use)
 	{
-		ft_print_error("Usage: ./cub3d Maps/map.cub");		// Imprime el mensaje de uso correcto del programa.
-		return;												// Termina la función sin cerrar el programa.
+		ft_print_error("Usage: ./cub3d Maps/map.cub");
+		return ;
 	}
-	free_game(game);										// Libera la memoria utilizada por game antes de salir.
-	exit(EXIT_FAILURE);										// Termina el programa con un código de error.
+	free_game(game);
+	exit(EXIT_FAILURE);
 }
-

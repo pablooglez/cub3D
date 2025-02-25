@@ -6,7 +6,7 @@
 #    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/02/12 21:09:02 by pablogon         ###   ########.fr        #
+#    Updated: 2025/02/24 22:21:21 by pablogon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME:= cub3D
 
 CFLAGS:= -g -Wall -Werror -Wextra \
-		-g -fsanitize=address,undefined \
+		# -g -fsanitize=address,undefined \
 		#-Wunreachable-code -Ofast \
 
 CUB3D = include/
@@ -41,10 +41,14 @@ SRCS	:=	src/check_color.c \
 			src/create_game.c \
 			src/error.c \
 			src/free.c \
+			src/ft_dda_algorithm.c \
 			src/init_and_memory.c \
 			src/main.c\
 			src/map.c \
 			src/moving.c \
+			src/player_position.c \
+			src/raycasting.c \
+			src/textures.c \
 			src/utils.c \
 
 
