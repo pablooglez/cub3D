@@ -16,12 +16,21 @@ cub3D/
 ├── MLX42/
 │   └── (MLX42 aquí)
 ├── src/
-│   ├── checks.c
+│   ├── check_color.c
+│   ├── check_file.c
+│   ├── check_map.c
+│   ├── create_game.c
 │   ├── error.c
-│   ├── floodfill.c
-│   ├── load_game.c
-│   ├── main.c
-│   └── utils.c
+│   ├── free.c
+    ├── ft_dda_algorithm.c
+    ├── init_and_memory.c
+    ├── main.c
+    ├── map.c
+    ├── moving.c
+    ├── player_position.c
+    ├── raycasting.c
+    ├── textures.c
+    └── utils.c
 ├── textures/
 │   └──wall_1.png
     └──wall_2.png
