@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:53:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/25 11:41:58 by albelope         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:37:56 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	ft_move_lateral(t_cub *game)
 			angle = angle - M_PI_2;
 		else
 			angle = angle + M_PI_2;
-		x = game->player->x + cos(angle) * game->player->move_speed;
-		y = game->player->y + sin(angle) * game->player->move_speed;
+		x = game->player->x + cos(angle) * (game->player->move_speed);
+		y = game->player->y + sin(angle) * (game->player->move_speed);
 		if (game->map[(int)y][(int)x] != '1')
 		{
 			game->player->x = x;
