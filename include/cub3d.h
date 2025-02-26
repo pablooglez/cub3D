@@ -6,30 +6,30 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/24 22:13:32 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:52:47 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <unistd.h>						// read, write y close
-# include <stdio.h>							// printf
-# include <stdlib.h>						// malloc, free
-# include <string.h>						//strerror
-# include <errno.h>							// perror
-# include <fcntl.h>							// open
-# include <sys/time.h>						// gettimeofday
-# include <math.h>							// sin, cos, tan, sqrt, pow ...
-# include "../Libft/libft.h"				// Libft
-# include "../Libft/get_next_line_bonus.h"	//Get_next_line
-# include "../MLX42/include/MLX42/MLX42.h"	// MLX42
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <sys/time.h>
+# include <math.h>
+# include "../Libft/libft.h"
+# include "../Libft/get_next_line_bonus.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 # define WIN_WIDTH 1940
 # define WIN_HEIGHT 1280
 # define M_PI 3.14159265358979323846
 # define M_PI_2 1.57079632679489661923
-# define FOV 1.04719755119659774615			//((60 * M_PI) / 180)
+# define FOV 1.04719755119659774615
 # define WALL_SIZE 1.0 
 
 typedef struct s_color

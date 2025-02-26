@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 12:32:59 by albelope          #+#    #+#             */
-/*   Updated: 2025/02/24 22:11:02 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:16:41 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void	ft_get_perspective_hit_distance(t_cub *game, int x)
 	}
 	angle_diff = ray->ray_angle - game->player->view;
 	ray->perpection_distance *= cos(angle_diff);
-	if (ray->perpection_distance < 0.01)
-		ray->perpection_distance = 0.01;
+	if (ray->perpection_distance < 0.05)
+		ray->perpection_distance = 0.05;
 }
 
 void	ft_raycasting(t_cub *game)

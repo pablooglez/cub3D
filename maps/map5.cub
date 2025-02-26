@@ -4,7 +4,7 @@ SO ./textures/wall_2.png
 
 EA ./textures/wall_3.png
 
-WE ./textures/wall_0.png
+WE ./textures/wall_4.png
 
 F 48, 27, 104
 C 9, 24, 51
