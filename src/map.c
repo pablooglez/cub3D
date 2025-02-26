@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:45:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/25 19:03:48 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:07:59 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
 {
 	int	i;
 
-	if (dst)
-		return (dst);
 	if (!line || !*line || line[0] == '\n')
-		return (NULL);
-
+		return (dst);
 	i = ft_find_char_index(line);
 	if (i && !ft_strncmp(line, coor, i))
 	{
@@ -34,7 +31,7 @@ static char	*get_and_save_coor(t_cub *game, char *dst, char *coor, char *line)
 			line++;
 		return (ft_substr(line, 0, ft_strlen(line) - 1));
 	}
-	return (NULL);
+	return (dst);
 }
 
 static int	ft_save_coor(t_cub *game, char *line, int *flag)
@@ -114,5 +111,5 @@ void	ft_get_map(t_cub *game)
 	if (flag == 8)
 		ft_error(game, 1, "Map too big");
 	if (flag)
-		ft_error(game, 1, "Unrecognized line");
+		ft_error(game, 1, "Invalid map");
 }
