@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:01:31 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/27 16:34:59 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:10:26 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_init_game(t_cub *game)
 	game->player->view = M_PI / 2;
 	game->player->move_speed = 0.10;
 	game->player->rot_speed = 0.10;
-	game->keys = (t_keys){0};
+	ft_init_keys(game);
 	game->fd = -1;
 }
 
