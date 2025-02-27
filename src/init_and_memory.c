@@ -6,11 +6,21 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:01:31 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/26 20:59:32 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:34:59 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_init_keys(t_cub *game)
+{
+	game->keys.a = 0;
+	game->keys.s = 0;
+	game->keys.w = 0;
+	game->keys.d = 0;
+	game->keys.left = 0;
+	game->keys.right = 0;
+}
 
 void	ft_init_game(t_cub *game)
 {

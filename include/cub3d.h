@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:23:58 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/26 19:52:47 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:11:21 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define M_PI 3.14159265358979323846
 # define M_PI_2 1.57079632679489661923
 # define FOV 1.04719755119659774615
-# define WALL_SIZE 1.0 
 
 typedef struct s_color
 {
@@ -166,6 +165,7 @@ void			free_game(t_cub *game);
 void			ft_dda_algorithm(t_cub *game, int x);
 
 //------------------INIT_AND_MEMORY---------------------//
+void			ft_init_keys(t_cub *game);
 void			ft_init_game(t_cub *game);
 void			init_image(t_cub *game);
 void			init_wall_data(t_wall_data *wall, t_cub *game, int x);

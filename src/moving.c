@@ -6,28 +6,33 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:53:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/26 20:37:56 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:45:53 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	ft_move_forward_back(t_cub *game)
+static void	ft_move_forward_back(t_cub *game, double dir)
 {
 	double	x;
 	double	y;
-	double	dir;
 
 	if (game->keys.w || game->keys.s)
 	{
-		dir = 1;
 		if (game->keys.s)
 			dir = -1;
 		x = game->player->x + cos(game->player->view)
 			* game->player->move_speed * dir;
 		y = game->player->y + sin(game->player->view)
 			* game->player->move_speed * dir;
-		if (game->map[(int)y][(int)x] != '1')
+		if (game->map[(int)y][(int)x] != '1'
+				&& game->map[(int)(y + 0.1)][(int)x] != '1'
+				&& game->map[(int)(y - 0.1)][(int)(x - 0.1)] != '1'
+				&& game->map[(int)y][(int)(x + 0.1)] != '1'
+				&& game->map[(int)(y + 0.1)][(int)(x + 0.1)] != '1'
+				&& game->map[(int)(y - 0.1)][(int)x] != '1'
+				&& game->map[(int)y][(int)(x - 0.1)] != '1'
+				&& game->map[(int)(y - 0.1)][(int)(x - 0.1)] != '1')
 		{
 			game->player->x = x;
 			game->player->y = y;
@@ -69,9 +74,11 @@ static void	ft_rotate_view(t_cub *game)
 void	ft_process_movement(void *param)
 {
 	t_cub	*game;
+	double	dir;
 
+	dir = 1;
 	game = (t_cub *)param;
-	ft_move_forward_back(game);
+	ft_move_forward_back(game, dir);
 	ft_move_lateral(game);
 	ft_rotate_view(game);
 }
