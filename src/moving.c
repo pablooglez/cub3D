@@ -6,7 +6,7 @@
 /*   By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:53:57 by pablogon          #+#    #+#             */
-/*   Updated: 2025/02/27 16:45:53 by pablogon         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:57:17 by pablogon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	ft_move_forward_back(t_cub *game, double dir)
 				&& game->map[(int)(y + 0.1)][(int)(x + 0.1)] != '1'
 				&& game->map[(int)(y - 0.1)][(int)x] != '1'
 				&& game->map[(int)y][(int)(x - 0.1)] != '1'
+				&& game->map[(int)(y - 0.1)][(int)(x - 0.1)] != '1'
 				&& game->map[(int)(y - 0.1)][(int)(x - 0.1)] != '1')
 		{
 			game->player->x = x;

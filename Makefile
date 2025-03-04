@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pablogon <pablogon@student.42.fr>          +#+  +:+       +#+         #
+#    By: albelope <albelope@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 20:15:52 by pablogon          #+#    #+#              #
-#    Updated: 2025/02/27 16:46:42 by pablogon         ###   ########.fr        #
+#    Updated: 2025/02/27 19:36:51 by albelope         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ CUB3D = include/
 
 MLX_DIR = ./MLX42/build
 MLX		= $(MLX_DIR)/libmlx42.a
+MLX_BUILD := $(MLX_DIR)/libmlx42.a
 LINK	= -ldl -lglfw -lpthread -lm
 
 LIBFT_DIR = ./Libft
@@ -92,9 +93,14 @@ libft:
 	@echo "$(CYAN)🔧 Building Libft...$(END)\n"
 	@make -s -C $(LIBFT_DIR)
 
-mlx42:
+mlx42: $(MLX_BUILD)
+
+$(MLX_BUILD):
 	@echo "$(CYAN)🔧 Building mlx42...$(END)\n"
-	@make -s -C $(MLX_DIR)
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		mkdir -p $(MLX_DIR) && cmake -B $(MLX_DIR) MLX42; \
+	fi
+	@make -C $(MLX_DIR) -j4
 
 $(NAME): $(OBJS)
 	@echo "$(BLUE)✦ ---------------------- ✦$(END)\n"
